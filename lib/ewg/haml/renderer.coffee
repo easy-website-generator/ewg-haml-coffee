@@ -1,6 +1,5 @@
 fs      = require 'fs'
 map     = require 'map-stream'
-rext    = require 'replace-ext'
 hamlc   = require 'haml-coffee'
 gutil   = require 'gulp-util'
 extend  = require 'extend'
@@ -71,6 +70,11 @@ class EWGHamlRenderer
     tmp = tmp[tmp.length - 1]
     return tmp.replace('.html', '').replace('.haml', '').replace('.', '-')
 
+  replaceExtension: (path) ->
+    path = path.replace('.html','').replace('.haml')
+    path = path + '.' + @config.compiler.extension
+    path.replace('..', '.')
+
   compileTemplate: (file, cb) =>
     log.green "rendering #{file.path}"
 
@@ -96,7 +100,7 @@ class EWGHamlRenderer
     output = @resolveContentFor(output, context)
     output = htmlmin(output, @config.minimize) if @config.minimize.enabled
 
-    file.path     = rext(file.path, @config.compiler.extension)
+    file.path     = @replaceExtension file.path
     file.contents = new Buffer(output)
     cb(null, file)
 
