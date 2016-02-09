@@ -43,7 +43,8 @@ class EWGHamlRenderer
       output = hamlc.render(content, context, @config.compiler)
     catch e
       file = content unless file
-      throw new PluginError('EWGHamlRenderer', 'Error compiling ' + file.yellow + ': ' + e, showStack: true)
+      throw new PluginError('EWGHamlRenderer', 'Error compiling '
+                              + file.yellow + ': ' + e, showStack: true)
     output
 
   renderPartial: (file, locals)=>
@@ -51,7 +52,8 @@ class EWGHamlRenderer
 
   renderFile: (file, locals) =>
     unless fs.existsSync(file)
-      throw new PluginError('EWGHamlRenderer', 'File not found ' + file.yellow , showStack: true)
+      throw new PluginError('EWGHamlRenderer', 'File not found '
+                              + file.yellow , showStack: true)
 
     content = fs.readFileSync(file, 'utf8')
     @renderContent(content, extend(true, @lastContext, locals), file)
@@ -64,7 +66,7 @@ class EWGHamlRenderer
 
     content
 
-  bodyClassFromFile: (file) =>
+  bodyClassFromFile: (file) ->
     tmp = file.split('/')
     tmp = tmp[tmp.length - 1]
     return tmp.replace('.html', '').replace('.haml', '').replace('.', '-')

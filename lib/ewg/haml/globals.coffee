@@ -1,6 +1,6 @@
 extend = require 'extend'
 
-isArray  = Array.isArray || ( value ) -> return {}.toString.call( value ) is '[object Array]'
+isArray  = ( value ) -> return {}.toString.call( value ) is '[object Array]'
 isString = ( value ) -> return typeof(value) == "string"
 isObject = ( value ) -> return {}.toString.call( value ) is "[object Object]"
 
@@ -43,7 +43,7 @@ class Globals
         myArray[index] = @resolveAtom(value)
     myArray
 
-  resolveAtom: (atom) =>
+  resolveAtom: (atom) ->
     return atom unless atom
     return atom unless isString(atom)
 

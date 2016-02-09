@@ -25,7 +25,7 @@ class EWGHamlContext
     @loadHelperIntoContext path.join(__dirname, 'helper', '**/*.coffee')
     if @config.compiler.custom_helper?
       for chelper in @config.compiler.custom_helper
-        @loadHelperIntoContext path.join(process.cwd(), chelper) 
+        @loadHelperIntoContext path.join(process.cwd(), chelper)
 
 
   # TODO watch for helper change and reload if
