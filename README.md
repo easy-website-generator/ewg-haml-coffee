@@ -3,7 +3,7 @@
 
 The ewg-haml-coffee-gulp module used by Easy-Website-Generator
 
-### installation
+### installation 
 ``npm install --save ewg-haml-coffee-gulp``
 
 ### Ressources
