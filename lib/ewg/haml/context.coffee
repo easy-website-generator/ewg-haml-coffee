@@ -3,7 +3,6 @@ glob    = require 'glob'
 path    = require 'path'
 extend  = require 'extend'
 log     = require 'ewg-logging'
-process = require 'process'
 helper  = require('express-helpers')()
 Globals = require './globals'
 
