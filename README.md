@@ -1,10 +1,10 @@
-# ewg-logging [![npm version](https://badge.fury.io/js/ewg-logging.svg)](https://badge.fury.io/js/ewg-logging) [![Build Status](https://travis-ci.org/easy-website-generator/ewg-logging.svg?branch=master)](https://travis-ci.org/easy-website-generator/ewg-logging) [![Code Climate](https://codeclimate.com/github/easy-website-generator/ewg-logging/badges/gpa.svg)](https://codeclimate.com/github/easy-website-generator/ewg-logging)
+# ewg-haml-coffee-gulp [![npm version](https://badge.fury.io/js/ewg-haml-coffee-gulp.svg)](https://badge.fury.io/js/ewg-haml-coffee-gulp) [![Build Status](https://travis-ci.org/easy-website-generator/ewg-haml-coffee-gulp.svg?branch=master)](https://travis-ci.org/easy-website-generator/ewg-haml-coffee-gulp) [![Code Climate](https://codeclimate.com/github/easy-website-generator/ewg-haml-coffee-gulp/badges/gpa.svg)](https://codeclimate.com/github/easy-website-generator/ewg-haml-coffee-gulp)
 
 
-The logging module used by Easy-Website-Generator
+The ewg-haml-coffee-gulp module used by Easy-Website-Generator
 
 ### installation
-``npm install --save ewg-logging``
+``npm install --save ewg-haml-coffee-gulp``
 
 ### Ressources
 > "[Easy-Website-Generator](https://github.com/easy-website-generator/)"
