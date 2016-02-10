@@ -18,6 +18,7 @@ class EWGHamlContext
       {
         log: log
         globals: new Globals(@config.globals)
+        ws: @config.ws
       }
     )
 
