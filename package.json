@@ -22,7 +22,6 @@
   },
   "homepage": "https://github.com/easy-website-generator/ewg-haml-coffee-gulp#readme",
   "dependencies": {
-    "bootstrap-sass": "^3.3.6",
     "coffee-script": "^1.10.0",
     "colors": "^1.1.2",
     "ewg-logging": "^1.0.0",
