@@ -1,13 +1,3 @@
 engines:
   coffeelint:
     enabled: true
-  fixme:
-    enabled: true
-  duplication:
-    enabled: true
-    config:
-      languages:
-      - javascript
-
-exclude_paths:
-  - test/
