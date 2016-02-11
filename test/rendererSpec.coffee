@@ -39,53 +39,39 @@ describe 'ewg/logging', ->
       expect( bodyClass ).to.equal 'test-index'
 
   describe '#compileTemplate()', ->
-    it 'renders default layout and template', ->
-      called = false
+    it 'renders default layout and template', (done) ->
       renderer.compileTemplate open('index.html.haml'), (err, file) ->
-        called = true
         expect( file.contents.toString('utf-8') ).to.contain 'layout.default'
         expect( file.contents.toString('utf-8') ).to.contain 'index.html'
 
-      expect( called ).to.be.true
+        done()
 
-    it 'renders another layout', ->
-      called = false
+    it 'renders another layout', (done)->
       renderer.compileTemplate open('index.blank.html.haml'), (err, file) ->
-        called = true
         expect( file.contents.toString('utf-8') ).to.contain 'layout.blank'
         expect( file.contents.toString('utf-8') ).to.contain 'index.blank.html'
+        done()
 
-      expect( called ).to.be.true
-
-    it 'renders a partial', ->
-      called = false
+    it 'renders a partial', (done)->
       renderer.compileTemplate open('partial.html.haml'), (err, file) ->
-        called = true
         expect( file.contents.toString('utf-8') ).to.contain 'layout.default'
         expect( file.contents.toString('utf-8') ).to.contain 'partial.html'
         expect( file.contents.toString('utf-8') ).to.contain '_partial.haml'
-
-      expect( called ).to.be.true
+        done()
 
     describe 'helper feature', ->
-      it 'includes ewg and custom helper', ->
-        called = false
+      it 'includes ewg and custom helper', (done)->
         renderer.compileTemplate open('helper.html.haml'), (err, file) ->
-          called = true
           expect( file.contents.toString('utf-8') ).to.contain 'layout.default'
           expect( file.contents.toString('utf-8') ).to.contain 'helper.html'
           expect( file.contents.toString('utf-8') ).to.contain '©yearwho'
           expect( file.contents.toString('utf-8') ).to.contain 'custom_helper'
-
-        expect( called ).to.be.true
+          done()
 
     describe ':content-for', ->
-      it 'can render a content for block', ->
-        called = false
+      it 'can render a content for block', (done)->
         renderer.compileTemplate open('content-for.html.haml'), (err, file) ->
-          called = true
           expect( file.contents.toString('utf-8') ).to.contain 'layout.default'
           expect( file.contents.toString('utf-8') ).to.contain 'content-for.html'
           expect( file.contents.toString('utf-8') ).to.contain 'content-for-test'
-
-        expect( called ).to.be.true
+          done()

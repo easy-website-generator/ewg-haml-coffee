@@ -46,14 +46,25 @@ class EWGHamlRenderer
     output
 
   renderPartial: (file, locals)=>
-    @renderFile("#{@config.compiler.input_path}/#{file}.haml", locals)
+    @renderFileSync("#{@config.compiler.input_path}/#{file}.haml", locals)
 
-  renderFile: (file, locals) =>
+  renderFileSync: (file, locals) =>
     unless fs.existsSync(file)
       throw new PluginError('EWGHamlRenderer', 'File not found ' + file.yellow , showStack: true)
 
     content = fs.readFileSync(file, 'utf8')
     @renderContent(content, extend(true, @lastContext, locals), file)
+
+  renderFile: (file, locals, callback) =>
+    fs.exists file, (exists) =>
+      unless exists
+        throw new PluginError('EWGHamlRenderer', 'File not found ' + file.yellow , showStack: true)
+
+      fs.readFile file, 'utf8', (err, content) =>
+        if err
+          throw new PluginError('EWGHamlRenderer', 'File read error ' + file.yellow , showStack: true)
+
+        callback @renderContent(content, extend(true, @lastContext, locals), file)
 
   resolveContentFor: (content, context) ->
     return content unless context.hasOwnProperty '__contentFor'
@@ -73,17 +84,17 @@ class EWGHamlRenderer
     path = path + @config.compiler.extension
     path.replace('..', '.')
 
-  compileTemplate: (file, cb) =>
+  compileTemplate: (file, callback) =>
     log.green "rendering #{file.path}"
 
     if file.isNull()
-      return cb(null, file)
+      return callback(null, file)
 
     if file.toString()[0] == '_'
-      return cb(null, file)
+      return callback(null, file)
 
     if file.isStream()
-      return cb(new Error('EWGHamlRenderer: Streaming not supported'))
+      return callback(new Error('EWGHamlRenderer: Streaming not supported'))
 
     context       = @freshContext()
     content       = file.contents.toString('utf8')
@@ -92,15 +103,14 @@ class EWGHamlRenderer
     # add a class to the body based on the rendered haml file
     context.body_class = @bodyClassFromFile(file.path)
 
+    @layout.fromContent content, (layout) =>
+      @renderFile layout, context, (output) =>
+        output = @resolveContentFor(output, context)
+        output = htmlmin(output, @config.minimize) if @config.minimize.enabled
 
-    layout = @layout.fromContent content
-    output = @renderFile(layout, context)
-    output = @resolveContentFor(output, context)
-    output = htmlmin(output, @config.minimize) if @config.minimize.enabled
-
-    file.path     = @replaceExtension file.path
-    file.contents = new Buffer(output)
-    cb(null, file)
+        file.path     = @replaceExtension file.path
+        file.contents = new Buffer(output)
+        callback(null, file)
 
   # for gulp
   stream: () =>
