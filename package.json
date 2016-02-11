@@ -1,6 +1,6 @@
 {
   "name": "ewg-haml-coffee-gulp",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "ewg haml-coffee module",
   "main": "index.js",
   "scripts": {
