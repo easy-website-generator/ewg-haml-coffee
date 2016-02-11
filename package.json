@@ -1,6 +1,6 @@
 {
   "name": "ewg-haml-coffee-gulp",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "ewg haml-coffee module",
   "main": "index.js",
   "scripts": {
@@ -27,7 +27,7 @@
     "ewg-logging": "^1.0.0",
     "express-helpers": "^1.3.2",
     "extend": "^3.0.0",
-    "glob": "^6.0.4",
+    "glob": "^7.0.0",
     "gulp-util": "^3.0.7",
     "haml-coffee": "git://github.com/easy-website-generator/haml-coffee",
     "htmlmin": "0.0.6",
