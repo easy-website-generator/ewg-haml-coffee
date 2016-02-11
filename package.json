@@ -1,6 +1,6 @@
 {
   "name": "ewg-haml-coffee-gulp",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "ewg haml-coffee module",
   "main": "index.js",
   "scripts": {
@@ -23,7 +23,6 @@
   "homepage": "https://github.com/easy-website-generator/ewg-haml-coffee-gulp#readme",
   "dependencies": {
     "coffee-script": "^1.10.0",
-    "colors": "^1.1.2",
     "ewg-logging": "^1.0.0",
     "express-helpers": "^1.3.2",
     "extend": "^3.0.0",
@@ -31,9 +30,7 @@
     "gulp-util": "^3.0.7",
     "haml-coffee": "git://github.com/easy-website-generator/haml-coffee",
     "htmlmin": "0.0.6",
-    "map-stream": "0.0.6",
-    "node-sass": "^3.4.2",
-    "uglify-js": "^2.6.1"
+    "map-stream": "0.0.6"
   },
   "devDependencies": {
     "chai": "^3.5.0",

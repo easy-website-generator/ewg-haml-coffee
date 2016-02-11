@@ -4,7 +4,6 @@ hamlc   = require 'haml-coffee'
 gutil   = require 'gulp-util'
 extend  = require 'extend'
 log     = require 'ewg-logging'
-colors  = require 'colors'
 htmlmin = require 'htmlmin'
 
 PluginError    = gutil.PluginError
