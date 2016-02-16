@@ -103,13 +103,13 @@ class EWGHamlRenderer
     context.body_class = @bodyClassFromFile(file.path)
 
     @layout.fromContent content, (layout) =>
-      @renderFile layout, context, (output) =>
-        output = @resolveContentFor(output, context)
-        output = htmlmin(output, @config.minimize) if @config.minimize.enabled
+      output = @renderFileSync layout, context
+      output = @resolveContentFor(output, context)
+      output = htmlmin(output, @config.minimize) if @config.minimize.enabled
 
-        file.path     = @replaceExtension file.path
-        file.contents = new Buffer(output)
-        callback(null, file)
+      file.path     = @replaceExtension file.path
+      file.contents = new Buffer(output)
+      callback(null, file)
 
   # for gulp
   stream: () =>
