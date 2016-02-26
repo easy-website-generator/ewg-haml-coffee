@@ -4,7 +4,7 @@ hamlc   = require 'haml-coffee'
 gutil   = require 'gulp-util'
 extend  = require 'extend'
 log     = require 'ewg-logging'
-htmlmin = require 'htmlmin'
+minify = require('html-minifier').minify
 
 PluginError    = gutil.PluginError
 EWGHamlContext = require './context'
@@ -20,7 +20,8 @@ defaultCompilerConfig =
 
 class EWGHamlRenderer
   constructor: (@config) ->
-    extend(true, defaultCompilerConfig,
+    extend(true, @config.compiler,
+                 defaultCompilerConfig,
                  @config.compiler)
 
     @layout  = new EWGHamlLayout(@config)
@@ -105,7 +106,7 @@ class EWGHamlRenderer
     @layout.fromContent content, (layout) =>
       output = @renderFileSync layout, context
       output = @resolveContentFor(output, context)
-      output = htmlmin(output, @config.minimize) if @config.minimize.enabled
+      output = minify(output, @config.minimize) if @config.minimize.enabled
 
       file.path     = @replaceExtension file.path
       file.contents = new Buffer(output)
