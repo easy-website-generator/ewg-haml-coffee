@@ -20,8 +20,8 @@ defaultCompilerConfig =
 
 class EWGHamlRenderer
   constructor: (@config) ->
-    extend(true, @config.compiler,
-                 defaultCompilerConfig,
+    @compilerConfig = defaultCompilerConfig
+    extend(true, @compilerConfig,
                  @config.compiler)
 
     @layout  = new EWGHamlLayout(@config)
@@ -39,7 +39,7 @@ class EWGHamlRenderer
     log.yellow "rendering #{file}"
     output = undefined
     try
-      output = hamlc.render(content, context, @config.compiler)
+      output = hamlc.render(content, context, @compilerConfig)
     catch e
       file = content unless file
       throw new PluginError('EWGHamlRenderer', 'Error compiling ' + file.yellow + ': ' + e, showStack: true)
@@ -106,6 +106,7 @@ class EWGHamlRenderer
     @layout.fromContent content, (layout) =>
       output = @renderFileSync layout, context
       output = @resolveContentFor(output, context)
+
       output = minify(output, @config.minimize) if @config.minimize.enabled
 
       file.path     = @replaceExtension file.path
