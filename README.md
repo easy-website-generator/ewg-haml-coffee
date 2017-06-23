@@ -3,10 +3,13 @@
 
 The ewg-haml-coffee-gulp module used by Easy-Website-Generator
 
-### installation 
+### installation
 ``npm install --save ewg-haml-coffee-gulp``
 
 ### Ressources
 > "[Easy-Website-Generator](https://github.com/easy-website-generator/)"
 
 > "[Creative-Workflow](http://www.creative-workflow.berlin/company.html)"
+
+# Changelog
+  * 1.0.12 - link helper for link_to, mail_to, tel_to, maps_to added
